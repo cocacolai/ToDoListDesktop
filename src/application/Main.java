@@ -41,7 +41,7 @@ public class Main extends Application {
 			
 
 			SideMenu menu = new SideMenu(root);
-			menu.initialise();
+			menu.initialise(true);
 			
 		} catch(Exception e) {
 			e.printStackTrace();
