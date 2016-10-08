@@ -28,15 +28,11 @@ public class Main extends Application {
 		    FXMLLoader loader = new FXMLLoader();
 		    loader.setLocation(ResourceUtil.getResourceURL(FilePathResource.SCREEN_LAYOUT_VIEW));
 		    GridPane root = (GridPane) loader.load();
-		    
-		    
+		    		    
 			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(ResourceUtil.getResourceURL(FilePathResource.APPLICATION_STYLE).toExternalForm());
 			primaryStage.setScene(scene);
-			
-            primaryStage.setMaximized(true);
-            
-			
+			primaryStage.setMaximized(true);
 			primaryStage.show();
 			
 

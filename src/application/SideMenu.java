@@ -53,6 +53,7 @@ public class SideMenu extends View{
 
     @Override
     public void initialise() {
+        super.initialise();
         menu = new VBox();
         menu.getStyleClass().add("menu");
         

@@ -12,7 +12,7 @@ public class FinishedTasksView extends View{
 
     @Override
     public void initialise() {
-               
+        super.initialise();
         Label label1 = new Label("Content from finished tasks view");
         super.getContent().getChildren().add(label1);
         

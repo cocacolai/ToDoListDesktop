@@ -30,7 +30,10 @@ public abstract class View {
         this.content = content;
     }
     
-    public abstract void initialise();
+    public void initialise(){
+        this.content.setPrefWidth(parent.getWidth());
+        this.content.setPrefHeight(parent.getHeight());
+    }
     
     public void removePreviousAddMenu(){
         parent.getChildren().clear();
