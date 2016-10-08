@@ -2,9 +2,9 @@ package utilities;
 
 import java.net.URL;
 
-public class ResourceUtil {
+public abstract class ResourceUtil {
     
-    public static URL getResource(String fileName){
+    public static URL getResourceURL(String fileName) {
         return ResourceUtil.class.getResource(fileName);
     }
 

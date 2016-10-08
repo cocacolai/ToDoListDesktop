@@ -1,11 +1,11 @@
 package application;
 	
 
-import consts.ViewFileConsts;
+import consts.FilePathResource;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import utilities.ResourceUtil;
@@ -22,15 +22,25 @@ public class Main extends Application {
 	    this.primaryStage = primaryStage;
 	    this.primaryStage.setTitle("To Do List Desktop");
 	    
-		try {;
-		    Parent root = FXMLLoader.load(ResourceUtil.getResource(ViewFileConsts.TODAY_VIEW));
+		try {
+		    FXMLLoader loader = new FXMLLoader();
+		    loader.setLocation(ResourceUtil.getResourceURL(FilePathResource.TODAY_VIEW));
+		    SplitPane root = (SplitPane) loader.load();
+		    
 			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(ResourceUtil.getResourceURL(FilePathResource.APPLICATION_STYLE).toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			
+
+			SideMenu menu = new SideMenu(root);
+			menu.initialise();
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+    
+    
 	}
 	
 	
