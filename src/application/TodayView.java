@@ -34,8 +34,8 @@ public class TodayView extends View{
         scrollPane.setPrefHeight(super.getContent().getPrefHeight());
         scrollPane.setPrefWidth(super.getContent().getPrefWidth());
         
-        Task temp = new Task("a","b","c","d");
-        Task temp1 = new Task("e","f","g","h");
+        Task temp = new Task("a","b","c","d","notes1");
+        Task temp1 = new Task("e","f","g","h","notes2");
         todaysTasks.add(temp);
         todaysTasks.add(temp1);
         

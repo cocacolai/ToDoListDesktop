@@ -23,6 +23,8 @@ public abstract class GUIUtils {
     public static final int iconWidth = 40;
     public static final int iconHeight = 40;
     
+    public static final String EXPANDED_TASK_NOTES="Click to hide notes";
+    public static final String UNEXPANDED_TASK_NOTES="Click to view notes";
     
     public static Button initialiseMenuButton(String text, GridPane parent){
         Button btn = new Button(text);
@@ -41,20 +43,6 @@ public abstract class GUIUtils {
     }
     
     public static GridPane setRowColumns(GridPane panel, int numCols, int numRows, Pane parent, double percentageParentWidth){
-        /*GridPane pane = panel;
-        for (int i = 0; i < numCols; i++) {
-            ColumnConstraints colConst = new ColumnConstraints();
-            colConst.setPrefWidth((parent.getPrefWidth()*percentageParentWidth));
-            colConst.setFillWidth(true);
-            colConst.setHgrow(Priority.ALWAYS) ;
-            pane.getColumnConstraints().add(colConst);
-        }
-        for (int i = 0; i < numRows; i++) {
-            RowConstraints rowConst = new RowConstraints();
-            rowConst.setFillHeight(true);
-            rowConst.setVgrow(Priority.ALWAYS) ;
-            pane.getRowConstraints().add(rowConst);         
-        }*/
         return setRowColumns(panel, numCols, numRows, parent, percentageParentWidth, null);
     }
     

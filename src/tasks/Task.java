@@ -1,12 +1,16 @@
 package tasks;
 
 import consts.FilePathResource;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -20,6 +24,7 @@ public class Task {
     private String dateStr;
     private String timeStr;
     private String listStr;
+    private String notesStr;
     
     private Label taskName;
     private Label date;
@@ -27,11 +32,12 @@ public class Task {
     private Label list;
     private CheckBox taskDone;
     
-    public Task(String taskNameStr, String dateStr, String timeStr, String listStr){
+    public Task(String taskNameStr, String dateStr, String timeStr, String listStr, String notesStr){
         this.taskNameStr = taskNameStr;
         this.dateStr = dateStr;
         this.timeStr = timeStr;
         this.listStr = listStr;
+        this.notesStr = notesStr;
                 
         this.taskName = new Label();
         this.date = new Label();
@@ -71,6 +77,14 @@ public class Task {
 
     public void setListStr(String listStr) {
         this.listStr = listStr;
+    }
+
+    public String getNotesStr() {
+        return notesStr;
+    }
+
+    public void setNotesStr(String notesStr) {
+        this.notesStr = notesStr;
     }
 
     public Pane getPane(Pane parent){
@@ -114,8 +128,31 @@ public class Task {
         Button deleteBtn = new Button();
         deleteBtn.setGraphic(GUIUtils.getIconImageAndView(FilePathResource.DELETE_ICON));
         innerContent.add(deleteBtn, 3, 0);
+                       
+        TitledPane notesPane = new TitledPane();
+        notesPane.setText(GUIUtils.UNEXPANDED_TASK_NOTES);
+        TextArea notesArea = new TextArea(notesStr);
+        notesArea.setEditable(false);
+        notesPane.setContent(notesArea);
+        notesPane.setExpanded(false);
+        notesPane.setOnMouseClicked(new EventHandler<MouseEvent>(){
+
+            @Override
+            public void handle(MouseEvent event) {
+                if(notesPane.getText().equals(GUIUtils.UNEXPANDED_TASK_NOTES)){
+                    notesPane.setText(GUIUtils.EXPANDED_TASK_NOTES);
+                }
+                else{
+                    notesPane.setText(GUIUtils.UNEXPANDED_TASK_NOTES);
+                }
                 
-        content.getChildren().add(innerContent);
+            }
+            
+        });
+        
+        content.add(innerContent,0,0);
+        content.add(notesPane,0,1);
+        
         pane.getChildren().add(content);
         
         return pane;
