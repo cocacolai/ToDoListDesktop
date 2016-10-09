@@ -3,6 +3,7 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
@@ -39,11 +40,12 @@ public class TodayView extends View{
         todaysTasks.add(temp1);
         
         GridPane allTasks = new GridPane();
-        allTasks = GUIUtils.setRowColumns(allTasks, 1, todaysTasks.size(), super.getContent());
+        allTasks = GUIUtils.setRowColumns(allTasks, 1, todaysTasks.size(), super.getContent(),GUIUtils.taskPercentageWidth);
         
         int row =0;
         for(Task t: todaysTasks){
             Pane tempPane = t.getPane(super.getContent());
+            tempPane.setPadding(new Insets(10, 10, 10, 10));
             allTasks.add(tempPane, 0, row);
             row++;
         }

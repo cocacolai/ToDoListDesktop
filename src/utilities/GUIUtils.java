@@ -3,15 +3,26 @@ package utilities;
 
 
 import application.View;
+import consts.FilePathResource;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 
 public abstract class GUIUtils {
+    
+    public static final double taskDetailPercentageWidth = 0.88;
+    public static final double taskPercentageWidth = 1;
+    public static final int iconWidth = 40;
+    public static final int iconHeight = 40;
+    
     
     public static Button initialiseMenuButton(String text, GridPane parent){
         Button btn = new Button(text);
@@ -29,18 +40,59 @@ public abstract class GUIUtils {
         });
     }
     
-    public static GridPane setRowColumns(GridPane panel, int numCols, int numRows, Pane parent){
-        GridPane pane = panel;
+    public static GridPane setRowColumns(GridPane panel, int numCols, int numRows, Pane parent, double percentageParentWidth){
+        /*GridPane pane = panel;
         for (int i = 0; i < numCols; i++) {
             ColumnConstraints colConst = new ColumnConstraints();
-            colConst.setPrefWidth((parent.getPrefWidth()*0.88));
+            colConst.setPrefWidth((parent.getPrefWidth()*percentageParentWidth));
+            colConst.setFillWidth(true);
+            colConst.setHgrow(Priority.ALWAYS) ;
             pane.getColumnConstraints().add(colConst);
         }
         for (int i = 0; i < numRows; i++) {
-            pane.getRowConstraints().add(new RowConstraints());         
-        }
-        return pane;
+            RowConstraints rowConst = new RowConstraints();
+            rowConst.setFillHeight(true);
+            rowConst.setVgrow(Priority.ALWAYS) ;
+            pane.getRowConstraints().add(rowConst);         
+        }*/
+        return setRowColumns(panel, numCols, numRows, parent, percentageParentWidth, null);
     }
     
+    
+    public static ColumnConstraints getColumnConstraint(Pane parent, double percentageParentWidth, Double colPercentageWidth){
+        ColumnConstraints colConst = new ColumnConstraints();
+        colConst.setPrefWidth((parent.getPrefWidth()*percentageParentWidth));
+        colConst.setFillWidth(true);
+        colConst.setHgrow(Priority.ALWAYS) ;
+        if(colPercentageWidth != null){
+            colConst.setPercentWidth(colPercentageWidth);
+        }
+        return colConst;
+    }
+    
+    public static ImageView getIconImageAndView(String imageFilePath){
+        return new ImageView(new Image(imageFilePath, GUIUtils.iconHeight, GUIUtils.iconWidth, false, false));
+    }
+
+    public static GridPane setRowColumns(GridPane panel, int numCols, int numRows, Pane parent, double percentageParentWidth, Double[] colWidths) {
+        GridPane pane = panel;
+        for (int i = 0; i < numCols; i++) {
+            ColumnConstraints colConst = new ColumnConstraints();
+            colConst.setPrefWidth((parent.getPrefWidth()*percentageParentWidth));
+            colConst.setFillWidth(true);
+            colConst.setHgrow(Priority.ALWAYS) ;
+            if(colWidths != null){
+                colConst.setPercentWidth(colWidths[i]*100);
+            }
+            pane.getColumnConstraints().add(colConst);
+        }
+        for (int i = 0; i < numRows; i++) {
+            RowConstraints rowConst = new RowConstraints();
+            rowConst.setFillHeight(true);
+            rowConst.setVgrow(Priority.ALWAYS) ;
+            pane.getRowConstraints().add(rowConst);         
+        }
+        return panel;
+    }
 
 }

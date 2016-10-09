@@ -1,9 +1,18 @@
 package tasks;
 
+import consts.FilePathResource;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import utilities.GUIUtils;
+import utilities.ResourceUtil;
 
 public class Task {
     
@@ -16,6 +25,7 @@ public class Task {
     private Label date;
     private Label time;
     private Label list;
+    private CheckBox taskDone;
     
     public Task(String taskNameStr, String dateStr, String timeStr, String listStr){
         this.taskNameStr = taskNameStr;
@@ -27,6 +37,7 @@ public class Task {
         this.date = new Label();
         this.time = new Label();
         this.list = new Label();
+        this.taskDone = new CheckBox();
         
     }
     
@@ -67,27 +78,44 @@ public class Task {
         pane.getStyleClass().add("taskPane");
         
         GridPane content = new GridPane();
-        content = GUIUtils.setRowColumns(content,1,3, parent);
-        content.setGridLinesVisible(true);
-        content.getStyleClass().add("task");
+        content = GUIUtils.setRowColumns(content, 1, 2, parent,GUIUtils.taskDetailPercentageWidth);
+        content.getStyleClass().add("task");   
+        
+        GridPane innerContent = new GridPane();
+        innerContent = GUIUtils.setRowColumns(innerContent, 4, 1, parent,GUIUtils.taskDetailPercentageWidth, new Double[]{0.05,0.9,0.05,0.05});
+        innerContent.add(taskDone, 0, 0);
+        
+        GridPane taskContent = new GridPane();
+        taskContent = GUIUtils.setRowColumns(taskContent,1,3, parent,GUIUtils.taskDetailPercentageWidth);
         
         taskName.setText(taskNameStr);
+        
         date.setText(dateStr);
         time.setText(timeStr);
         list.setText(listStr);
         
-        content.add(taskName, 0,0);
+        taskContent.add(taskName, 0,0);
         
         GridPane dateTimeContent = new GridPane();
-        dateTimeContent = GUIUtils.setRowColumns(dateTimeContent,2,1, parent);
-        dateTimeContent.setGridLinesVisible(true);
+        dateTimeContent = GUIUtils.setRowColumns(dateTimeContent,2,1, parent,GUIUtils.taskDetailPercentageWidth);
+        dateTimeContent.getStyleClass().add("taskDateTime");
         
-        dateTimeContent.add(date, 0,0);
+        dateTimeContent.add(date,0,0);
         dateTimeContent.add(time,1,0);
-        content.add(dateTimeContent, 0,1);
+        taskContent.add(dateTimeContent, 0,1);
                
-        content.add(list, 0,2);
+        taskContent.add(list, 0,2);
+        innerContent.add(taskContent,1,0);
         
+        Button editBtn = new Button();
+        editBtn.setGraphic(GUIUtils.getIconImageAndView(FilePathResource.EDIT_ICON));
+        innerContent.add(editBtn, 2, 0);
+        
+        Button deleteBtn = new Button();
+        deleteBtn.setGraphic(GUIUtils.getIconImageAndView(FilePathResource.DELETE_ICON));
+        innerContent.add(deleteBtn, 3, 0);
+                
+        content.getChildren().add(innerContent);
         pane.getChildren().add(content);
         
         return pane;
