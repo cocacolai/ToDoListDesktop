@@ -129,7 +129,7 @@ public class Task {
         deleteBtn.setGraphic(GUIUtils.getIconImageAndView(FilePathResource.DELETE_ICON));
         innerContent.add(deleteBtn, 3, 0);
                        
-        TitledPane notesPane = new TitledPane();
+        final TitledPane notesPane = new TitledPane();
         notesPane.setText(GUIUtils.UNEXPANDED_TASK_NOTES);
         TextArea notesArea = new TextArea(notesStr);
         notesArea.setEditable(false);
@@ -137,7 +137,6 @@ public class Task {
         notesPane.setExpanded(false);
         notesPane.setOnMouseClicked(new EventHandler<MouseEvent>(){
 
-            @Override
             public void handle(MouseEvent event) {
                 if(notesPane.getText().equals(GUIUtils.UNEXPANDED_TASK_NOTES)){
                     notesPane.setText(GUIUtils.EXPANDED_TASK_NOTES);

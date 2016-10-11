@@ -33,9 +33,9 @@ public abstract class GUIUtils {
         return btn;
     }
     
-    public static void setMenuAction(Button btn, View view){
+    public static void setMenuAction(Button btn, final View view){
         btn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
+            public void handle(ActionEvent e) {
                 view.removePreviousAddMenu();
                 view.initialise();
             }
