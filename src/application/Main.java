@@ -10,14 +10,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import tasks.TaskList;
 import utilities.ResourceUtil;
+import utilities.XMLUtil;
 
 
 public class Main extends Application {
     
     private Stage primaryStage;
     private BorderPane rootLayout;
-
     
 	@Override
 	public void start(Stage primaryStage) {
@@ -34,8 +35,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setMaximized(true);
 			primaryStage.show();
-			
-
+		
 			SideMenu menu = new SideMenu(root);
 			menu.initialise(true);
 			

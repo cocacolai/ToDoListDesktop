@@ -25,6 +25,7 @@ public class Task {
     private String timeStr;
     private String listStr;
     private String notesStr;
+    private String isComplete;
     
     private Label taskName;
     private Label date;
@@ -32,12 +33,13 @@ public class Task {
     private Label list;
     private CheckBox taskDone;
     
-    public Task(String taskNameStr, String dateStr, String timeStr, String listStr, String notesStr){
+    public Task(String taskNameStr, String dateStr, String timeStr, String listStr, String notesStr, String isComplete){
         this.taskNameStr = taskNameStr;
         this.dateStr = dateStr;
         this.timeStr = timeStr;
         this.listStr = listStr;
         this.notesStr = notesStr;
+        this.isComplete = isComplete;
                 
         this.taskName = new Label();
         this.date = new Label();
@@ -85,6 +87,14 @@ public class Task {
 
     public void setNotesStr(String notesStr) {
         this.notesStr = notesStr;
+    }
+
+    public String getIsComplete() {
+        return isComplete;
+    }
+
+    public void setIsComplete(String isComplete) {
+        this.isComplete = isComplete;
     }
 
     public Pane getPane(Pane parent){

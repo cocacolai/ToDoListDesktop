@@ -43,7 +43,7 @@ public class SideMenu extends View{
     }
     
     public void initialise(boolean firstOpen){
-        initialise();
+        initialisePage();
         
         if(firstOpen){
             todayView.initialise();
@@ -51,8 +51,7 @@ public class SideMenu extends View{
         }
     }
 
-    @Override
-    public void initialise() {
+    private void initialisePage() {
         super.initialise();
         menu = new VBox();
         menu.getStyleClass().add("menu");

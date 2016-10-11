@@ -1,0 +1,8 @@
+<all-tasks>
+	<task name="taskname" date="11-10-2016" time="20:21" list="1" complete="false" >
+		<notes>task notes, yah baby</notes>
+	</task>
+	<task name="taskname2" date="12-10-2016" time="20:21" list="1" complete="false" >
+		<notes>task notes, yah baby</notes>
+	</task>
+</all-tasks>
